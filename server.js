@@ -1,18 +1,34 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
+require("dotenv").config();
+const express = require("express");
+const { ApolloServer } = require("apollo-server-express");
+const mongoose = require("mongoose");
+const typeDefs = require("./graphql/typeDefs");
+const resolvers = require("./graphql/resolvers");
+const jwt = require("jsonwebtoken");
+
 const app = express();
 
-// Middleware (if needed)
-app.use(express.json());
+const getUserFromToken = (token) => {
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET);
+  } catch {
+    return null;
+  }
+};
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => {
+    const token = req.headers.authorization || "";
+    const user = getUserFromToken(token.replace("Bearer ", ""));
+    return { user };
+  },
+});
 
-// Test route
-app.get('/', (req, res) => res.send('Server is running'));
+server.start().then(() => {
+  server.applyMiddleware({ app });
+  mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => app.listen(4000, () => console.log("Server running on http://localhost:4000")));
+});
 
-// Start the server
-app.listen(3001, () => console.log('Server running on port 3001'));
