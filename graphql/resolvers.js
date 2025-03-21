@@ -2,12 +2,25 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 const { generateToken, hashPassword, comparePasswords } = require("../utils/auth");
 const { AuthenticationError } = require("apollo-server-express");
+const cloudinary = require("../utils/cloudinary");
 
 const resolvers = {
   Query: {
     getUser: async (_, { id }) => await User.findById(id).populate("posts"),
     getAllUsers: async () => await User.find(),
-    getPosts: async () => await Post.find().populate("user"),
+
+    // ✅ Updated getPosts to show only followed users' posts and self-posts
+    getPosts: async (_, __, { user }) => {
+      if (!user) throw new AuthenticationError("Not authenticated");
+
+      const loggedInUser = await User.findById(user.id);
+      const following = loggedInUser.following.concat(user.id); // Include self-posts
+
+      return await Post.find({ user: { $in: following } })
+        .populate("user")
+        .sort({ createdAt: -1 });
+    },
+
     getPost: async (_, { id }) => await Post.findById(id).populate("user"),
   },
 
@@ -27,9 +40,30 @@ const resolvers = {
       return { token: generateToken(user), user };
     },
 
-    createPost: async (_, { imageUrl, caption }, { user }) => {
+    createPost: async (_, { file, caption }, { user }) => {
       if (!user) throw new AuthenticationError("Not authenticated");
-      const post = new Post({ imageUrl, caption, user: user.id });
+
+      const { createReadStream } = await file;
+      const stream = createReadStream();
+
+      const uploadResult = await new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          { folder: "social-media-posts" },
+          (error, result) => {
+            if (error) reject(error);
+            resolve(result);
+          }
+        );
+
+        stream.pipe(uploadStream);
+      });
+
+      const post = new Post({
+        imageUrl: uploadResult.secure_url,
+        caption,
+        user: user.id,
+      });
+
       await post.save();
       return post;
     },

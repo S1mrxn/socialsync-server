@@ -5,8 +5,13 @@ const mongoose = require("mongoose");
 const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
 const jwt = require("jsonwebtoken");
+const helmet = require("helmet");
+const cors = require("cors");
 
 const app = express();
+
+app.use(helmet());
+app.use(cors({ origin: process.env.CLIENT_URL }));
 
 const getUserFromToken = (token) => {
   try {
@@ -31,4 +36,3 @@ server.start().then(() => {
   mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(4000, () => console.log("Server running on http://localhost:4000")));
 });
-
