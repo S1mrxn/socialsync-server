@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#0a1123',
+secondary: '#F5F5F5',
+accent: '#8fd1bf',
+button: '#ba2c94'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.toggle-switch:checked + .toggle-label {
+background-color: #ba2c94;
+}
+.toggle-switch:checked + .toggle-label .toggle-label-dot {
+transform: translateX(1.5rem);
+}
+.toggle-label {
+transition: background-color 0.3s ease;
+}
+.toggle-label-dot {
+transition: transform 0.3s ease;
+}
+</style>
+</head>
+<body class="bg-[#0a1123] min-h-screen">
+<nav class="fixed top-0 left-0 right-0 bg-[#0a1123] border-b border-gray-200/10 z-50">
+<div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<a href="user-feed.html" class="text-2xl font-['Pacifico'] text-accent">SocialSync</a>
+</div>
+<div class="flex items-center gap-6">
+<button id="notificationBtn" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary relative">
+<i class="ri-notification-3-line text-xl text-button"></i>
+<span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+</button>
+<button id="settingsBtn" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary">
+<i class="ri-settings-3-line text-xl text-button"></i>
+</button>
+<div class="w-10 h-10 rounded-full bg-cover cursor-pointer" style="background-image: url('https://public.readdy.ai/ai/img_res/ef7ddf45c99817f390d55901fac62e23.jpg')"></div>
+</div>
+</div>
+</nav>
+<main class="max-w-2xl mx-auto pt-24 pb-24 px-4">
+<div class="bg-[#0a1123] rounded-lg">
+<div class="border-b border-gray-200 pb-4 mb-6">
+<h1 class="text-2xl font-semibold text-accent">Settings</h1>
+<p class="text-accent mt-1">Manage your account preferences and settings</p>
+</div>
+<section class="mb-8">
+<h2 class="text-lg font-semibold mb-4 text-accent">Account Preferences</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-[#0a1123] border border-accent/20 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 flex items-center justify-center bg-white rounded-full">
+<i class="ri-user-line text-xl text-button"></i>
+</div>
+<div>
+<h3 class="font-medium text-accent">Profile Information</h3>
+<p class="text-sm text-accent">Update your personal information</p>
+</div>
+</div>
+<i class="ri-arrow-right-s-line text-xl text-gray-400"></i>
+</div>
+<div class="flex items-center justify-between p-4 bg-[#0a1123] border border-accent/20 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 flex items-center justify-center bg-white rounded-full">
+<i class="ri-lock-line text-xl text-button"></i>
+</div>
+<div>
+<h3 class="font-medium text-accent">Password</h3>
+<p class="text-sm text-accent">Change your password</p>
+</div>
+</div>
+<i class="ri-arrow-right-s-line text-xl text-gray-400"></i>
+</div>
+</div>
+</section>
+<section class="mb-8">
+<h2 class="text-lg font-semibold mb-4 text-accent">Privacy Settings</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-[#0a1123] border border-accent/20 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 flex items-center justify-center bg-white rounded-full">
+<i class="ri-eye-line text-xl text-button"></i>
+</div>
+<div>
+<h3 class="font-medium text-accent">Profile Visibility</h3>
+<p class="text-sm text-accent">Control who can see your profile</p>
+</div>
+</div>
+<div class="relative">
+<input type="checkbox" class="toggle-switch sr-only" id="profileVisibility">
+<label for="profileVisibility" class="toggle-label flex items-center w-12 h-6 bg-gray-300 rounded-full p-1 cursor-pointer">
+<span class="toggle-label-dot w-4 h-4 bg-white rounded-full shadow-md"></span>
+</label>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-8">
+<h2 class="text-lg font-semibold mb-4 text-accent">Notification Settings</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-[#0a1123] border border-accent/20 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 flex items-center justify-center bg-white rounded-full">
+<i class="ri-mail-line text-xl text-button"></i>
+</div>
+<div>
+<h3 class="font-medium text-accent">Email Notifications</h3>
+<p class="text-sm text-accent">Receive updates via email</p>
+</div>
+</div>
+<div class="relative">
+<input type="checkbox" class="toggle-switch sr-only" id="emailNotif" checked>
+<label for="emailNotif" class="toggle-label flex items-center w-12 h-6 bg-gray-300 rounded-full p-1 cursor-pointer">
+<span class="toggle-label-dot w-4 h-4 bg-white rounded-full shadow-md"></span>
+</label>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-[#0a1123] border border-accent/20 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 flex items-center justify-center bg-white rounded-full">
+<i class="ri-notification-4-line text-xl text-button"></i>
+</div>
+<div>
+<h3 class="font-medium text-accent">Push Notifications</h3>
+<p class="text-sm text-accent">Get notified about new activities</p>
+</div>
+</div>
+<div class="relative">
+<input type="checkbox" class="toggle-switch sr-only" id="pushNotif" checked>
+<label for="pushNotif" class="toggle-label flex items-center w-12 h-6 bg-gray-300 rounded-full p-1 cursor-pointer">
+<span class="toggle-label-dot w-4 h-4 bg-white rounded-full shadow-md"></span>
+</label>
+</div>
+</div>
+</div>
+</section>
+<div class="border-t border-gray-200 pt-6">
+<button class="w-full py-3 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition-colors !rounded-button">Log Out</button>
+</div>
+</div>
+</main>
+<div class="fixed bottom-0 left-0 right-0 bg-[#0a1123] border-t border-gray-200/10">
+<div class="max-w-2xl mx-auto px-4 py-2 flex items-center justify-between">
+<a href="user-feed.html" class="flex flex-col items-center gap-1 p-2 text-accent">
+<i class="ri-home-5-line text-2xl"></i>
+<span class="text-xs">Home</span>
+</a>
+<a href="search.html" class="flex flex-col items-center gap-1 p-2 text-accent">
+<i class="ri-search-line text-2xl"></i>
+<span class="text-xs">Search</span>
+</a>
+<a href="post.html" class="flex flex-col items-center gap-1 p-2 text-accent">
+<i class="ri-add-line text-2xl"></i>
+<span class="text-xs">Post</span>
+</a>
+<a href="user-profile.html" class="flex flex-col items-center gap-1 p-2 text-button">
+<i class="ri-user-line text-2xl"></i>
+<span class="text-xs">Profile</span>
+</a>
+</div>
+</div>
+<script>
+document.querySelectorAll('.toggle-switch').forEach(toggle => {
+toggle.addEventListener('change', function() {
+const notification = document.createElement('div');
+notification.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm';
+notification.textContent = this.checked ? 'Setting enabled' : 'Setting disabled';
+document.body.appendChild(notification);
+setTimeout(() => notification.remove(), 2000);
+});
+});
+document.querySelector('button:contains("Log Out")').addEventListener('click', function() {
+const confirmDialog = document.createElement('div');
+confirmDialog.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+confirmDialog.innerHTML = `
+<div class="bg-white rounded-lg p-6 max-w-sm mx-4 w-full">
+<h3 class="text-lg font-semibold mb-4">Confirm Logout</h3>
+<p class="text-gray-600 mb-6">Are you sure you want to log out?</p>
+<div class="flex justify-end gap-4">
+<button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded !rounded-button">Cancel</button>
+<button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 !rounded-button">Log Out</button>
+</div>
+</div>
+`;
+document.body.appendChild(confirmDialog);
+const [cancelBtn, logoutBtn] = confirmDialog.querySelectorAll('button');
+cancelBtn.onclick = () => confirmDialog.remove();
+logoutBtn.onclick = () => window.location.href = 'login.html';
+});
+</script>
+</body>
+</html>

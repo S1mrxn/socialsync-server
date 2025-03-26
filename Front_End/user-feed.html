@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Feed</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#0a1123',
+secondary: '#F5F5F5',
+accent: '#8fd1bf',
+button: '#ba2c94'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.post-content img {
+max-height: 400px;
+object-fit: cover;
+}
+.like-animation {
+animation: likeEffect 0.5s ease;
+}
+@keyframes likeEffect {
+0% { transform: scale(1); }
+50% { transform: scale(1.2); }
+100% { transform: scale(1); }
+}
+textarea.comment-input {
+overflow: hidden;
+}
+textarea.comment-input:focus {
+height: auto;
+min-height: 2.5rem;
+border-radius: 1rem;
+}
+</style>
+</head>
+<body class="bg-primary min-h-screen relative overflow-x-hidden">
+<div class="fixed inset-0 overflow-hidden">
+<div class="absolute -left-16 top-1/4 w-32 h-32 rounded-full bg-accent/5"></div>
+<div class="absolute -right-8 top-1/3 w-24 h-24 rounded-full bg-accent/5"></div>
+<div class="absolute left-8 top-2/3 w-16 h-16 rounded-full bg-accent/5"></div>
+<div class="absolute -right-16 top-3/4 w-40 h-40 rounded-full bg-accent/5"></div>
+<svg class="absolute left-24 top-1/2 w-64 h-64 text-accent/5" viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="0.5"/>
+<circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" stroke-width="0.5"/>
+<circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="0.5"/>
+</svg>
+<svg class="absolute right-32 top-1/4 w-48 h-48 text-accent/5" viewBox="0 0 100 100">
+<rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" stroke-width="0.5"/>
+<rect x="30" y="30" width="40" height="40" fill="none" stroke="currentColor" stroke-width="0.5"/>
+<rect x="40" y="40" width="20" height="20" fill="none" stroke="currentColor" stroke-width="0.5"/>
+</svg>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(138,255,241,0.02)_0%,rgba(10,17,35,0)_100%)]"></div>
+</div>
+<nav class="fixed top-0 left-0 right-0 bg-primary border-b border-accent/20 z-50">
+<div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<a href="#" class="text-2xl font-['Pacifico'] text-accent">SocialSync</a>
+<div class="relative">
+<input type="text" placeholder="Search" class="pl-10 pr-4 py-2 w-64 bg-secondary rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/20">
+<div class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-500">
+<i class="ri-search-line"></i>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button id="notificationBtn" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary relative">
+<i class="ri-notification-3-line text-xl text-button"></i>
+<span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+</button>
+<button id="settingsBtn" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary">
+<i class="ri-settings-3-line text-xl text-button"></i>
+</button>
+<div class="w-10 h-10 rounded-full bg-cover cursor-pointer" style="background-image: url('https://public.readdy.ai/ai/img_res/e23c46812d059cced80663456a435dda.jpg')"></div>
+</div>
+</div>
+</nav>
+<div class="fixed bottom-0 left-0 right-0 bg-primary border-t border-accent/20">
+<div class="max-w-2xl mx-auto px-4 py-2 flex items-center justify-between">
+<button class="flex flex-col items-center gap-1 p-2 text-button">
+<i class="ri-home-5-line text-2xl"></i>
+<span class="text-xs">Home</span>
+</button>
+<button onclick="window.location.href='search.html'" class="flex flex-col items-center gap-1 p-2 text-[#8fd1bf]">
+<i class="ri-search-line text-2xl"></i>
+<span class="text-xs">Search</span>
+</button>
+<button onclick="window.location.href='post.html'" class="flex flex-col items-center gap-1 p-2 text-[#8fd1bf]">
+<i class="ri-add-line text-2xl"></i>
+<span class="text-xs">Post</span>
+</button>
+<button onclick="window.location.href='user-profile.html'" class="flex flex-col items-center gap-1 p-2 text-[#8fd1bf]">
+<i class="ri-user-line text-2xl"></i>
+<span class="text-xs">Profile</span>
+</button>
+</div>
+</div>
+<main class="max-w-2xl mx-auto pt-24 pb-24 px-4 text-primary">
+<div id="feedContainer" class="space-y-6">
+<!-- Posts will be dynamically inserted here -->
+</div>
+</main>
+<!-- Notification Panel -->
+<div id="notificationPanel" class="hidden fixed top-16 right-4 w-80 bg-white rounded-lg shadow-lg p-4 border border-gray-100">
+<h3 class="font-semibold mb-4">Notifications</h3>
+<div class="space-y-4">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-cover" style="background-image: url('https://public.readdy.ai/ai/img_res/9665fd15bab3f1cd10547d9b9d558dfd.jpg')"></div>
+<div>
+<p class="text-sm"><span class="font-semibold">Emma Thompson</span> liked your post</p>
+<p class="text-xs text-gray-500">2 minutes ago</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-cover" style="background-image: url('https://public.readdy.ai/ai/img_res/68ece3a8a2c80b5ed42e486f52ae45ea.jpg')"></div>
+<div>
+<p class="text-sm"><span class="font-semibold">Michael Chen</span> started following you</p>
+<p class="text-xs text-gray-500">15 minutes ago</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Settings Panel -->
+<div id="settingsPanel" class="hidden fixed top-16 right-4 w-64 bg-white rounded-lg shadow-lg p-4 border border-gray-100">
+<div class="space-y-2">
+<button onclick="window.location.href='user-profile.html'" class="w-full text-left px-4 py-2 rounded hover:bg-secondary flex items-center gap-3">
+<i class="ri-user-line"></i>
+<span>Profile</span>
+</button>
+<button onclick="window.location.href='settings.html'" class="w-full text-left px-4 py-2 rounded hover:bg-secondary flex items-center gap-3">
+<i class="ri-settings-4-line"></i>
+<span>Settings</span>
+</button>
+<hr class="my-2">
+<button class="w-full text-left px-4 py-2 rounded hover:bg-secondary flex items-center gap-3 text-red-500">
+<i class="ri-logout-box-line"></i>
+<span>Logout</span>
+</button>
+</div>
+</div>
+<script>
+const mockPosts = [
+{
+id: 1,
+user: {
+name: 'Sarah Anderson',
+avatar: 'https://public.readdy.ai/ai/img_res/8841545e14eecffd021c7578f4619793.jpg',
+isFollowing: false
+},
+content: 'Just finished an amazing photoshoot in downtown! The city lights create such a magical atmosphere. What do you think about this shot?',
+image: 'https://public.readdy.ai/ai/img_res/cc387f4ed4acfa983a7697dfe25f4398.jpg',
+timestamp: '35 minutes ago',
+likes: 234,
+comments: [
+{
+user: 'David Miller',
+avatar: 'https://public.readdy.ai/ai/img_res/53367bd5604f70f1d58bdc3861f9065a.jpg',
+content: 'Absolutely stunning! The composition is perfect.',
+timestamp: '25 minutes ago'
+}
+]
+},
+{
+id: 2,
+user: {
+name: 'James Wilson',
+avatar: 'https://public.readdy.ai/ai/img_res/72c3b7a0201b54711da0acf9c8ff6213.jpg',
+isFollowing: true
+},
+content: 'Morning coffee and coding session. Starting the day right! ☕️💻',
+image: 'https://public.readdy.ai/ai/img_res/df36fbde251d9379039aad75af142a09.jpg',
+timestamp: '2 hours ago',
+likes: 156,
+comments: [
+{
+user: 'Emily Parker',
+avatar: 'https://public.readdy.ai/ai/img_res/8a7c4080523e2811779d771210ce0dda.jpg',
+content: 'Love your setup! What keyboard is that?',
+timestamp: '1 hour ago'
+}
+]
+}
+];
+function handleCommentSubmit(postId, commentInput, commentBtn) {
+const commentText = commentInput.value.trim();
+if (commentText) {
+const postIndex = mockPosts.findIndex(p => p.id === postId);
+if (postIndex !== -1) {
+const newComment = {
+user: 'You',
+avatar: 'https://readdy.ai/api/search-image?query=professional+headshot+portrait+with+natural+lighting&width=100&height=100&seq=10&orientation=squarish',
+content: commentText,
+timestamp: 'Just now'
+};
+mockPosts[postIndex].comments.push(newComment);
+// Update comment count
+const commentCountElement = document.querySelector(`[data-post-id="${postId}"] .comment-btn span`);
+commentCountElement.textContent = mockPosts[postIndex].comments.length;
+// Add new comment to DOM
+const commentsContainer = document.querySelector(`[data-post-id="${postId}"] .comments-container`);
+const commentElement = document.createElement('div');
+commentElement.className = 'flex items-start gap-3 mb-4';
+commentElement.innerHTML = `
+<div class="w-8 h-8 rounded-full bg-cover" style="background-image: url('${newComment.avatar}')"></div>
+<div class="flex-1">
+<p class="text-sm"><span class="font-semibold text-accent">${newComment.user}</span> ${newComment.content}</p>
+<p class="text-xs text-gray-500 mt-1">${newComment.timestamp}</p>
+</div>
+`;
+commentsContainer.appendChild(commentElement);
+// Clear input
+commentInput.value = '';
+commentBtn.disabled = true;
+commentBtn.classList.add('opacity-50', 'cursor-not-allowed');
+}
+}
+}
+function createPostElement(post) {
+const postElement = document.createElement('article');
+postElement.className = 'bg-white rounded-lg border border-gray-100 overflow-hidden';
+postElement.setAttribute('data-post-id', post.id);
+postElement.innerHTML = `
+<div class="p-4">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='post-details.html'">
+<div class="w-10 h-10 rounded-full bg-cover" style="background-image: url('${post.user.avatar}')"></div>
+<div>
+<h3 class="font-semibold text-accent">${post.user.name}</h3>
+<p class="text-xs text-gray-500">${post.timestamp}</p>
+</div>
+</div>
+<button class="follow-btn px-4 py-1.5 rounded-full text-sm font-medium ${post.user.isFollowing ? 'bg-gray-100 text-gray-800' : 'bg-button text-white'} !rounded-button">
+${post.user.isFollowing ? 'Following' : 'Follow'}
+</button>
+</div>
+<p class="mb-4 cursor-pointer" onclick="window.location.href='post-details.html'">${post.content}</p>
+<div class="post-content rounded-lg overflow-hidden mb-4 cursor-pointer" onclick="window.location.href='post-details.html'">
+<img src="${post.image}" alt="Post image" class="w-full">
+</div>
+<div class="flex items-center gap-6">
+<button class="like-btn flex items-center gap-2 text-button hover:text-button/80">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-heart-line text-xl"></i>
+</div>
+<span>${post.likes}</span>
+</button>
+<button class="comment-btn flex items-center gap-2 text-button hover:text-button/80">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-chat-1-line text-xl"></i>
+</div>
+<span>${post.comments.length}</span>
+</button>
+<button class="share-btn flex items-center gap-2 text-button hover:text-button/80">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-share-line text-xl"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="border-t">
+<div class="p-4">
+<div class="comments-container">
+<div class="flex items-start gap-3 mb-4">
+<div class="w-8 h-8 rounded-full bg-cover" style="background-image: url('${post.comments[0].avatar}')"></div>
+<div class="flex-1">
+<p class="text-sm"><span class="font-semibold text-accent">${post.comments[0].user}</span> ${post.comments[0].content}</p>
+<p class="text-xs text-gray-500 mt-1">${post.comments[0].timestamp}</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-cover" style="background-image: url('https://readdy.ai/api/search-image?query=professional+headshot+portrait+with+natural+lighting&width=100&height=100&seq=10&orientation=squarish')"></div>
+<div class="flex-1 flex items-center">
+<textarea placeholder="Add a comment..." class="comment-input flex-1 bg-secondary rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none h-10 leading-tight" oninput="this.nextElementSibling.disabled = !this.value.trim(); this.nextElementSibling.classList.toggle('opacity-50', !this.value.trim()); this.nextElementSibling.classList.toggle('cursor-not-allowed', !this.value.trim());"></textarea>
+<button class="post-comment-btn ml-2 px-4 py-1.5 bg-button text-white rounded-full text-sm font-medium !rounded-button opacity-50 cursor-not-allowed" disabled>Post</button>
+</div>
+</div>
+</div>
+</div>
+`;
+const likeBtn = postElement.querySelector('.like-btn');
+const followBtn = postElement.querySelector('.follow-btn');
+const shareBtn = postElement.querySelector('.share-btn');
+const commentInput = postElement.querySelector('.comment-input');
+const commentBtn = postElement.querySelector('.post-comment-btn');
+commentBtn.addEventListener('click', () => {
+handleCommentSubmit(post.id, commentInput, commentBtn);
+});
+commentInput.addEventListener('keypress', (e) => {
+if (e.key === 'Enter' && !e.shiftKey && !commentBtn.disabled) {
+handleCommentSubmit(post.id, commentInput, commentBtn);
+}
+});
+likeBtn.addEventListener('click', function() {
+const icon = this.querySelector('i');
+const likeCount = this.querySelector('span');
+const postId = post.id;
+// Remove old animation class
+icon.classList.remove('like-animation');
+if (icon.classList.contains('ri-heart-line')) {
+// Like the post
+icon.classList.remove('ri-heart-line');
+icon.classList.add('ri-heart-fill', 'text-red-500');
+likeCount.textContent = parseInt(likeCount.textContent) + 1;
+// Add animation
+void icon.offsetWidth; // Trigger reflow
+icon.classList.add('like-animation');
+// Update post data
+const postIndex = mockPosts.findIndex(p => p.id === postId);
+if (postIndex !== -1) {
+mockPosts[postIndex].likes++;
+}
+} else {
+// Unlike the post
+icon.classList.remove('ri-heart-fill', 'text-red-500');
+icon.classList.add('ri-heart-line');
+likeCount.textContent = parseInt(likeCount.textContent) - 1;
+// Update post data
+const postIndex = mockPosts.findIndex(p => p.id === postId);
+if (postIndex !== -1) {
+mockPosts[postIndex].likes--;
+}
+}
+// Show like notification
+const notification = document.createElement('div');
+notification.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm';
+notification.textContent = icon.classList.contains('ri-heart-fill') ? 'Post liked!' : 'Post unliked';
+document.body.appendChild(notification);
+// Remove notification after 2 seconds
+setTimeout(() => {
+notification.remove();
+}, 2000);
+});
+followBtn.addEventListener('click', function() {
+const isFollowing = this.textContent.trim() === 'Following';
+this.textContent = isFollowing ? 'Follow' : 'Following';
+this.classList.toggle('bg-gray-100');
+this.classList.toggle('text-gray-800');
+this.classList.toggle('bg-button');
+this.classList.toggle('text-white');
+});
+shareBtn.addEventListener('click', function() {
+// Share functionality would go here
+});
+return postElement;
+}
+function initializeFeed() {
+const feedContainer = document.getElementById('feedContainer');
+mockPosts.forEach(post => {
+feedContainer.appendChild(createPostElement(post));
+});
+}
+document.addEventListener('DOMContentLoaded', function() {
+initializeFeed();
+const notificationBtn = document.getElementById('notificationBtn');
+const notificationPanel = document.getElementById('notificationPanel');
+const settingsBtn = document.getElementById('settingsBtn');
+const settingsPanel = document.getElementById('settingsPanel');
+notificationBtn.addEventListener('click', function() {
+notificationPanel.classList.toggle('hidden');
+settingsPanel.classList.add('hidden');
+});
+settingsBtn.addEventListener('click', function() {
+settingsPanel.classList.toggle('hidden');
+notificationPanel.classList.add('hidden');
+});
+document.addEventListener('click', function(event) {
+if (!notificationBtn.contains(event.target) && !notificationPanel.contains(event.target)) {
+notificationPanel.classList.add('hidden');
+}
+if (!settingsBtn.contains(event.target) && !settingsPanel.contains(event.target)) {
+settingsPanel.classList.add('hidden');
+}
+});
+});
+</script>
+</body>
+</html>

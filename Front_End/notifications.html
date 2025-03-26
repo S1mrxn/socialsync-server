@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notifications - SocialSync</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#0a1123',
+secondary: '#8fd1bf'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+</style>
+</head>
+<body class="bg-[#0a1123] min-h-screen">
+<nav class="fixed top-0 left-0 right-0 bg-[#0a1123] border-b border-gray-800 z-50">
+<div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<a href="index.html" class="text-2xl font-['Pacifico'] text-secondary">SocialSync</a>
+<div class="relative">
+<input type="text" placeholder="Search notifications" class="pl-10 pr-4 py-2 w-64 bg-white/10 text-white rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20">
+<div class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<a href="settings.html" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10">
+<i class="ri-settings-3-line text-xl text-secondary"></i>
+</a>
+<div class="relative">
+<div id="profileDropdownBtn" class="w-10 h-10 rounded-full bg-cover cursor-pointer" style="background-image: url('https://public.readdy.ai/ai/img_res/958b35bad4f54d549f25cfb102604784.jpg')"></div>
+<div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-2 z-50">
+<a href="user-profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-3xl mx-auto pt-24 pb-24 px-4">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h1 class="text-2xl font-bold text-white mb-2">Notifications</h1>
+<p class="text-gray-400">You have <span class="text-secondary font-semibold">12</span> unread notifications</p>
+</div>
+<div class="flex gap-4">
+<button id="markAllReadBtn" class="px-4 py-2 text-sm text-secondary hover:text-secondary/80">Mark all as read</button>
+<div class="relative">
+<button id="filterBtn" class="flex items-center gap-2 px-4 py-2 bg-white/10 text-white rounded-full text-sm hover:bg-white/20">
+<i class="ri-filter-3-line"></i>
+<span>Filter</span>
+</button>
+<div id="filterDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-2 z-40">
+<button data-filter="all" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">All notifications</button>
+<button data-filter="unread" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Unread only</button>
+<button data-filter="mentions" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Mentions</button>
+<button data-filter="comments" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Comments</button>
+<button data-filter="likes" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Likes</button>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="bg-white rounded-xl p-4 hover:shadow-lg transition-shadow cursor-pointer unread">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-cover flex-shrink-0" style="background-image: url('https://public.readdy.ai/ai/img_res/e930cdefaefdaf7c96c08af1b77d7602.jpg')"></div>
+<div class="flex-1">
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-gray-900">
+<span class="font-semibold">Emily Thompson</span>
+mentioned you in a comment
+</p>
+<p class="text-gray-600 mt-1">Great insights on the project! @username what do you think about implementing these changes next sprint?</p>
+<div class="flex items-center gap-4 mt-2">
+<span class="text-sm text-gray-500">2 minutes ago</span>
+<button class="text-sm text-secondary hover:text-secondary/80">Reply</button>
+</div>
+</div>
+<div class="w-2 h-2 bg-secondary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl p-4 hover:shadow-lg transition-shadow cursor-pointer unread">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-cover flex-shrink-0" style="background-image: url('https://public.readdy.ai/ai/img_res/e5740d7abcb2539048a4cdb4861b59c2.jpg')"></div>
+<div class="flex-1">
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-gray-900">
+<span class="font-semibold">Michael Chen</span>
+liked your post
+</p>
+<p class="text-gray-600 mt-1">Your latest design showcase received a like</p>
+<div class="flex items-center gap-4 mt-2">
+<span class="text-sm text-gray-500">15 minutes ago</span>
+<button class="text-sm text-secondary hover:text-secondary/80">View post</button>
+</div>
+</div>
+<div class="w-2 h-2 bg-secondary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl p-4 hover:shadow-lg transition-shadow cursor-pointer">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-cover flex-shrink-0" style="background-image: url('https://public.readdy.ai/ai/img_res/a8479ed933f2e32863b486955fd4cac6.jpg')"></div>
+<div class="flex-1">
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-gray-900">
+<span class="font-semibold">Sarah Williams</span>
+started following you
+</p>
+<div class="flex items-center gap-4 mt-2">
+<span class="text-sm text-gray-500">1 hour ago</span>
+<button class="text-sm text-secondary hover:text-secondary/80">View profile</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-xl p-4 hover:shadow-lg transition-shadow cursor-pointer">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
+<i class="ri-notification-4-line text-xl text-secondary"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-gray-900">
+<span class="font-semibold">System Update</span>
+New features available
+</p>
+<p class="text-gray-600 mt-1">Check out our latest platform updates and improvements!</p>
+<div class="flex items-center gap-4 mt-2">
+<span class="text-sm text-gray-500">2 hours ago</span>
+<button class="text-sm text-secondary hover:text-secondary/80">Learn more</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="settingsModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+<div class="bg-white rounded-xl w-full max-w-md mx-4">
+<div class="p-6">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-semibold">Notification Settings</h2>
+<button class="closeModal w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">
+<i class="ri-close-line text-xl"></i>
+</button>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-medium">Push Notifications</h3>
+<p class="text-sm text-gray-500">Receive notifications on your device</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input type="checkbox" class="sr-only peer" checked>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-medium">Email Notifications</h3>
+<p class="text-sm text-gray-500">Receive notifications via email</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input type="checkbox" class="sr-only peer" checked>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-medium">Mentions</h3>
+<p class="text-sm text-gray-500">When someone mentions you</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input type="checkbox" class="sr-only peer" checked>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+<div class="mt-6 flex justify-end">
+<button class="closeModal px-6 py-2 bg-secondary text-white font-medium hover:bg-secondary/90 !rounded-button">Save Changes</button>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed bottom-0 left-0 right-0 bg-[#0a1123] border-t border-gray-800">
+<div class="max-w-2xl mx-auto px-4 py-2 flex items-center justify-between">
+<a href="user-feed.html" class="flex flex-col items-center gap-1 p-2 text-[#8fd1bf] hover:text-[#8fd1bf]/80">
+<i class="ri-home-5-line text-2xl"></i>
+<span class="text-xs">Home</span>
+</a>
+<a href="search.html" class="flex flex-col items-center gap-1 p-2 text-[#8fd1bf] hover:text-[#8fd1bf]/80">
+<i class="ri-search-line text-2xl"></i>
+<span class="text-xs">Search</span>
+</a>
+<a href="post.html" class="flex flex-col items-center gap-1 p-2 text-[#8fd1bf] hover:text-[#8fd1bf]/80">
+<i class="ri-add-line text-2xl"></i>
+<span class="text-xs">Post</span>
+</a>
+<a href="user-profile.html" class="flex flex-col items-center gap-1 p-2 text-[#8fd1bf] hover:text-[#8fd1bf]/80">
+<i class="ri-user-line text-2xl"></i>
+<span class="text-xs">Profile</span>
+</a>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const profileDropdownBtn = document.getElementById('profileDropdownBtn');
+const profileDropdown = document.getElementById('profileDropdown');
+const filterBtn = document.getElementById('filterBtn');
+const filterDropdown = document.getElementById('filterDropdown');
+const settingsModal = document.getElementById('settingsModal');
+const closeModalBtns = document.querySelectorAll('.closeModal');
+const markAllReadBtn = document.getElementById('markAllReadBtn');
+const filterButtons = filterDropdown.querySelectorAll('button');
+const notifications = document.querySelectorAll('.space-y-4 > div');
+function filterNotifications(filterType) {
+notifications.forEach(notification => {
+const notificationText = notification.textContent.toLowerCase();
+switch(filterType) {
+case 'all':
+notification.style.display = 'block';
+break;
+case 'unread':
+notification.style.display = notification.classList.contains('unread') ? 'block' : 'none';
+break;
+case 'mentions':
+notification.style.display = notificationText.includes('mentioned you') ? 'block' : 'none';
+break;
+case 'comments':
+notification.style.display = notificationText.includes('comment') ? 'block' : 'none';
+break;
+case 'likes':
+notification.style.display = notificationText.includes('liked') ? 'block' : 'none';
+break;
+}
+});
+}
+filterButtons.forEach(button => {
+button.addEventListener('click', () => {
+const filterType = button.getAttribute('data-filter');
+filterNotifications(filterType);
+filterDropdown.classList.add('hidden');
+});
+});
+profileDropdownBtn.addEventListener('click', function() {
+profileDropdown.classList.toggle('hidden');
+});
+filterBtn.addEventListener('click', function() {
+filterDropdown.classList.toggle('hidden');
+});
+closeModalBtns.forEach(btn => {
+btn.addEventListener('click', function() {
+settingsModal.classList.add('hidden');
+});
+});
+markAllReadBtn.addEventListener('click', function() {
+document.querySelectorAll('.unread').forEach(notification => {
+notification.classList.remove('unread');
+notification.querySelector('.bg-secondary')?.remove();
+});
+});
+document.addEventListener('click', function(event) {
+if (!profileDropdownBtn.contains(event.target) && !profileDropdown.contains(event.target)) {
+profileDropdown.classList.add('hidden');
+}
+if (!filterBtn.contains(event.target) && !filterDropdown.contains(event.target)) {
+filterDropdown.classList.add('hidden');
+}
+if (event.target === settingsModal) {
+settingsModal.classList.add('hidden');
+}
+});
+});
+</script>
+</body>
+</html>

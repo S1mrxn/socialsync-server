@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post Details - SocialSync</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#0a1123',
+secondary: '#8fd1bf',
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.comment-input {
+min-height: 2.5rem;
+}
+.like-animation {
+animation: likeEffect 0.5s ease;
+}
+@keyframes likeEffect {
+0% { transform: scale(1); }
+50% { transform: scale(1.2); }
+100% { transform: scale(1); }
+}
+</style>
+</head>
+<body class="bg-[#0a1123] min-h-screen">
+<nav class="fixed top-0 left-0 right-0 bg-[#0a1123] border-b border-gray-800 z-50">
+<div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<a href="index.html" class="text-2xl font-['Pacifico'] text-secondary">SocialSync</a>
+<div class="relative">
+<input type="text" placeholder="Search" class="pl-10 pr-4 py-2 w-64 bg-white/10 text-white rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20">
+<div class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<a href="notifications.html" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 relative">
+<i class="ri-notification-3-line text-xl text-secondary"></i>
+<span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+</a>
+<a href="settings.html" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10">
+<i class="ri-settings-3-line text-xl text-secondary"></i>
+</a>
+<div class="relative">
+<div id="profileDropdownBtn" class="w-10 h-10 rounded-full bg-cover cursor-pointer" style="background-image: url('https://public.readdy.ai/ai/img_res/fbcececa6ee8919416a3a7230fca5d48.jpg')"></div>
+<div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-2 z-50">
+<a href="user-profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-3xl mx-auto pt-24 pb-24 px-4">
+<div class="mb-6">
+<a href="user-feed.html" class="flex items-center text-secondary hover:text-secondary/80">
+<i class="ri-arrow-left-line mr-2"></i>
+Back to Feed
+</a>
+</div>
+<article class="bg-white rounded-xl overflow-hidden">
+<div class="p-6">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-cover" style="background-image: url('https://public.readdy.ai/ai/img_res/295686c701f5397018576d4330d14eaf.jpg')"></div>
+<div>
+<h3 class="font-semibold text-lg">Sarah Anderson</h3>
+<p class="text-sm text-gray-500">Professional Photographer</p>
+<p class="text-xs text-gray-400">35 minutes ago</p>
+</div>
+</div>
+<button class="follow-btn px-6 py-2 bg-secondary text-white font-medium hover:bg-secondary/90 !rounded-button">Follow</button>
+</div>
+<p class="text-lg mb-6">Just finished an amazing photoshoot in downtown! The city lights create such a magical atmosphere. What do you think about this shot? 📸✨</p>
+<div class="rounded-xl overflow-hidden mb-6">
+<img src="https://public.readdy.ai/ai/img_res/0e0242316234cadc83d8ec1ee3b8c9c5.jpg" alt="Post image" class="w-full">
+</div>
+<div class="flex items-center gap-6 mb-6">
+<button class="like-btn flex items-center gap-2 text-gray-700 hover:text-red-500">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-heart-line text-xl"></i>
+</div>
+<span>234</span>
+</button>
+<button class="flex items-center gap-2 text-gray-700">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-chat-1-line text-xl"></i>
+</div>
+<span>42</span>
+</button>
+<button class="share-btn flex items-center gap-2 text-gray-700">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-share-line text-xl"></i>
+</div>
+<span>Share</span>
+</button>
+<button class="bookmark-btn flex items-center gap-2 text-gray-700 ml-auto">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-bookmark-line text-xl"></i>
+</div>
+</button>
+</div>
+<div class="border-t pt-6">
+<h4 class="font-semibold mb-4">Comments (42)</h4>
+<div class="space-y-6" id="commentsContainer">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-cover flex-shrink-0" style="background-image: url('https://public.readdy.ai/ai/img_res/83ee7d700a45d2fb834378dfd5b0d81d.jpg')"></div>
+<div class="flex-1">
+<div class="bg-gray-50 rounded-xl p-4">
+<div class="flex items-center justify-between mb-2">
+<h5 class="font-semibold">David Miller</h5>
+<span class="text-xs text-gray-500">25 minutes ago</span>
+</div>
+<p>Absolutely stunning! The composition is perfect. The way you've captured the city lights creates such a magical atmosphere. Would love to know what camera settings you used for this shot.</p>
+</div>
+<div class="flex items-center gap-4 mt-2 text-sm">
+<button class="text-gray-500 hover:text-gray-700">Like</button>
+<button class="text-gray-500 hover:text-gray-700">Reply</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 flex gap-4">
+<div class="w-10 h-10 rounded-full bg-cover flex-shrink-0" style="background-image: url('https://readdy.ai/api/search-image?query=professional+headshot+portrait+with+natural+lighting&width=100&height=100&seq=10&orientation=squarish')"></div>
+<div class="flex-1">
+<textarea placeholder="Add a comment..." class="comment-input w-full px-4 py-3 bg-gray-50 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-secondary/20"></textarea>
+<div class="flex justify-end mt-2">
+<button class="post-comment-btn px-6 py-2 bg-secondary text-white font-medium hover:bg-secondary/90 !rounded-button opacity-50 cursor-not-allowed" disabled>Post</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<div class="mt-8">
+<h3 class="text-xl font-semibold text-white mb-4">More from Sarah Anderson</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white rounded-xl overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
+<img src="https://public.readdy.ai/ai/img_res/67dc0c351f6b8c7b8ea08715e2f2d353.jpg" alt="Related post" class="w-full h-48 object-cover">
+<div class="p-4">
+<p class="text-sm text-gray-500 mb-2">2 days ago</p>
+<p class="line-clamp-2">Urban exploration through the lens. Finding beauty in the concrete jungle. #StreetPhotography</p>
+</div>
+</div>
+<div class="bg-white rounded-xl overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
+<img src="https://public.readdy.ai/ai/img_res/2a43529057c853db963582cb959114bd.jpg" alt="Related post" class="w-full h-48 object-cover">
+<div class="p-4">
+<p class="text-sm text-gray-500 mb-2">5 days ago</p>
+<p class="line-clamp-2">Portrait session with @emma.white. Natural light is always the best light. #PortraitPhotography</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-0 left-0 right-0 bg-[#0a1123] border-t border-gray-800">
+<div class="max-w-2xl mx-auto px-4 py-2 flex items-center justify-between">
+<a href="user-feed.html" class="flex flex-col items-center gap-1 p-2 text-[#8fd1bf]">
+<i class="ri-home-5-line text-2xl"></i>
+<span class="text-xs">Home</span>
+</a>
+<a href="search.html" class="flex flex-col items-center gap-1 p-2 text-[#8fd1bf] hover:text-[#8fd1bf]/80">
+<i class="ri-search-line text-2xl"></i>
+<span class="text-xs">Search</span>
+</a>
+<a href="post.html" class="flex flex-col items-center gap-1 p-2 text-[#8fd1bf] hover:text-[#8fd1bf]/80">
+<i class="ri-add-line text-2xl"></i>
+<span class="text-xs">Post</span>
+</a>
+<a href="user-profile.html" class="flex flex-col items-center gap-1 p-2 text-[#8fd1bf] hover:text-[#8fd1bf]/80">
+<i class="ri-user-line text-2xl"></i>
+<span class="text-xs">Profile</span>
+</a>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const profileDropdownBtn = document.getElementById('profileDropdownBtn');
+const profileDropdown = document.getElementById('profileDropdown');
+profileDropdownBtn.addEventListener('click', function() {
+    profileDropdown.classList.toggle('hidden');
+});
+document.addEventListener('click', function(event) {
+    if (!profileDropdownBtn.contains(event.target) && !profileDropdown.contains(event.target)) {
+        profileDropdown.classList.add('hidden');
+    }
+});
+const likeBtn = document.querySelector('.like-btn');
+const bookmarkBtn = document.querySelector('.bookmark-btn');
+const followBtn = document.querySelector('.follow-btn');
+const commentInput = document.querySelector('.comment-input');
+const postCommentBtn = document.querySelector('.post-comment-btn');
+const commentsContainer = document.getElementById('commentsContainer');
+likeBtn.addEventListener('click', function() {
+const icon = this.querySelector('i');
+const likeCount = this.querySelector('span');
+icon.classList.remove('like-animation');
+if (icon.classList.contains('ri-heart-line')) {
+icon.classList.remove('ri-heart-line');
+icon.classList.add('ri-heart-fill', 'text-red-500');
+likeCount.textContent = parseInt(likeCount.textContent) + 1;
+void icon.offsetWidth;
+icon.classList.add('like-animation');
+} else {
+icon.classList.remove('ri-heart-fill', 'text-red-500');
+icon.classList.add('ri-heart-line');
+likeCount.textContent = parseInt(likeCount.textContent) - 1;
+}
+});
+bookmarkBtn.addEventListener('click', function() {
+const icon = this.querySelector('i');
+if (icon.classList.contains('ri-bookmark-line')) {
+icon.classList.remove('ri-bookmark-line');
+icon.classList.add('ri-bookmark-fill', 'text-secondary');
+} else {
+icon.classList.remove('ri-bookmark-fill', 'text-secondary');
+icon.classList.add('ri-bookmark-line');
+}
+});
+followBtn.addEventListener('click', function() {
+const isFollowing = this.textContent === 'Following';
+this.textContent = isFollowing ? 'Follow' : 'Following';
+this.classList.toggle('bg-gray-200');
+this.classList.toggle('text-gray-800');
+this.classList.toggle('bg-secondary');
+this.classList.toggle('text-white');
+});
+commentInput.addEventListener('input', function() {
+postCommentBtn.disabled = !this.value.trim();
+postCommentBtn.classList.toggle('opacity-50', !this.value.trim());
+postCommentBtn.classList.toggle('cursor-not-allowed', !this.value.trim());
+});
+postCommentBtn.addEventListener('click', function() {
+const commentText = commentInput.value.trim();
+if (commentText) {
+const newComment = document.createElement('div');
+newComment.className = 'flex gap-4';
+newComment.innerHTML = `
+<div class="w-10 h-10 rounded-full bg-cover flex-shrink-0" style="background-image: url('https://readdy.ai/api/search-image?query=professional+headshot+portrait+with+natural+lighting&width=100&height=100&seq=10&orientation=squarish')"></div>
+<div class="flex-1">
+<div class="bg-gray-50 rounded-xl p-4">
+<div class="flex items-center justify-between mb-2">
+<h5 class="font-semibold">You</h5>
+<span class="text-xs text-gray-500">Just now</span>
+</div>
+<p>${commentText}</p>
+</div>
+<div class="flex items-center gap-4 mt-2 text-sm">
+<button class="text-gray-500 hover:text-gray-700">Like</button>
+<button class="text-gray-500 hover:text-gray-700">Reply</button>
+</div>
+</div>
+`;
+commentsContainer.insertBefore(newComment, commentsContainer.firstChild);
+commentInput.value = '';
+postCommentBtn.disabled = true;
+postCommentBtn.classList.add('opacity-50', 'cursor-not-allowed');
+}
+});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SocialSync - Connect & Share</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#0a1123',
+secondary: '#8fd1bf',
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.hero-gradient {
+background: linear-gradient(135deg, rgba(143,209,191,0.1) 0%, rgba(10,17,35,0.95) 100%);
+}
+</style>
+</head>
+<body class="bg-[#0a1123]">
+<nav class="fixed top-0 left-0 right-0 bg-[#0a1123] z-50 border-b border-gray-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center gap-8">
+<a href="#" class="text-3xl font-['Pacifico'] text-secondary">SocialSync</a>
+</div>
+<div class="flex items-center gap-4">
+<a href="#features" class="text-white hover:text-secondary">Features</a>
+<a href="#about" class="text-white hover:text-secondary">About</a>
+</div>
+</div>
+</div>
+</nav>
+<main>
+<section class="pt-32 pb-20 relative overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://public.readdy.ai/ai/img_res/6c029d2dbfc41220fa2d4e3c6fa116a6.jpg')] opacity-10"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div>
+<h1 class="text-5xl font-bold text-[#ba2c94] mb-6">Connect, Share & Grow Together</h1>
+<p class="text-xl text-white mb-8">Join millions of people who use SocialSync to share ideas, discover trending content, and build meaningful connections.</p>
+<div class="flex gap-4">
+<button onclick="document.getElementById('signupModal').classList.remove('hidden')" class="px-8 py-3 bg-secondary text-white text-lg hover:bg-secondary/90 !rounded-button">Join Now</button>
+<button onclick="document.getElementById('loginModal').classList.remove('hidden')" class="px-8 py-3 border-2 border-secondary text-secondary hover:bg-secondary/10 text-lg !rounded-button">Log in</button>
+</div>
+</div>
+<div class="relative">
+<img src="https://public.readdy.ai/ai/img_res/6fd32ba8ee5fbda1235a24f3334d48a4.jpg" class="rounded-2xl shadow-2xl" alt="Social Collaboration">
+</div>
+</div>
+</div>
+</section>
+<section id="features" class="py-20 bg-[#0a1123]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-primary mb-4">Why Choose SocialSync?</h2>
+<p class="text-xl text-white">Everything you need to connect and share with your community</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-[#0a1123] border border-gray-800 p-8 rounded-xl shadow-sm">
+<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+<i class="ri-group-line text-2xl text-secondary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-4">Smart Communities</h3>
+<p class="text-white">Join communities based on your interests and connect with like-minded people from around the world.</p>
+</div>
+<div class="bg-[#0a1123] border border-gray-800 p-8 rounded-xl shadow-sm">
+<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+<i class="ri-shield-check-line text-2xl text-secondary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-4">Privacy First</h3>
+<p class="text-white">Advanced privacy controls let you decide who sees your content and how you interact with others.</p>
+</div>
+<div class="bg-[#0a1123] border border-gray-800 p-8 rounded-xl shadow-sm">
+<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+<i class="ri-refresh-line text-2xl text-secondary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-4">New Way To Connect</h3>
+<p class="text-white">We've re-imagined social networking by keeping the features you love while eliminating the noise and distractions that get in the way of genuine connections.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="about" class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div>
+<img src="https://public.readdy.ai/ai/img_res/385aa475594a54d5eb2e7c9df4acc7bd.jpg" class="rounded-2xl" alt="About SocialSync">
+</div>
+<div>
+<h2 class="text-4xl font-bold text-primary mb-6">Our Story</h2>
+<p class="text-xl text-white mb-8">Started in 2025, SocialSync was born from a simple idea: to create a platform where people can authentically connect and share their stories. Today, we're proud to help millions of users express themselves and build meaningful relationships.</p>
+<div class="flex gap-8">
+<div>
+<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-heart-line text-2xl text-secondary"></i>
+</div>
+<h4 class="text-lg font-semibold text-primary mb-2">User-Focused</h4>
+<p class="text-white">Every feature is designed with our users in mind.</p>
+</div>
+<div>
+<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+<i class="ri-global-line text-2xl text-secondary"></i>
+</div>
+<h4 class="text-lg font-semibold text-primary mb-2">Global Reach</h4>
+<p class="text-white">Connect with people from all around the world.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-primary text-white py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid md:grid-cols-4 gap-8">
+<div>
+<a href="#" class="text-2xl font-['Pacifico'] text-secondary mb-4 block">SocialSync</a>
+<p class="text-gray-400">Connecting people, sharing stories.</p>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Product</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-secondary">Features</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Company</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-secondary">About</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold mb-4">Legal</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-secondary">Privacy</a></li>
+<li><a href="#" class="text-gray-400 hover:text-secondary">Terms</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 flex justify-between items-center">
+<p class="text-gray-400">&copy; 2025 SocialSync. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<div id="loginModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+<div class="bg-[#f5f6f8] rounded-xl p-8 max-w-md w-full mx-4">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-2xl font-semibold text-gray-900">Log in</h3>
+<button onclick="this.closest('#loginModal').classList.add('hidden')" class="text-gray-400 hover:text-gray-600">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+<form class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+<input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent" required>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+<input type="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent" required>
+</div>
+<div class="flex items-center justify-between">
+<label class="flex items-center">
+<input type="checkbox" class="w-4 h-4 text-secondary">
+<span class="ml-2 text-sm text-gray-600">Remember me</span>
+</label>
+<a href="#" class="text-sm text-secondary hover:text-secondary/80">Forgot password?</a>
+</div>
+<button type="submit" class="w-full py-2 bg-secondary text-white hover:bg-secondary/90 !rounded-button">Log in</button>
+</form>
+<div class="mt-6">
+<div class="relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-gray-300"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-2 bg-[#f5f6f8] text-gray-500">Or continue with</span>
+</div>
+</div>
+<div class="mt-6">
+<button class="w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 !rounded-button">
+<i class="ri-google-fill text-xl mr-2"></i>
+Google
+</button>
+</div>
+</div>
+</div>
+</div>
+<div id="signupModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+<div class="bg-[#f5f6f8] rounded-xl p-8 max-w-md w-full mx-4">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-2xl font-semibold text-gray-900">Create account</h3>
+<button onclick="this.closest('#signupModal').classList.add('hidden')" class="text-gray-400 hover:text-gray-600">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+<form class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Full name</label>
+<input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent" required>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+<input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent" required>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+<input type="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent" required>
+</div>
+<div class="flex items-start">
+<input type="checkbox" class="w-4 h-4 mt-1 text-secondary" required>
+<label class="ml-2 text-sm text-gray-600">I agree to the <a href="#" class="text-secondary hover:text-secondary/80">Terms of Service</a> and <a href="#" class="text-secondary hover:text-secondary/80">Privacy Policy</a></label>
+</div>
+<button type="submit" class="w-full py-2 bg-secondary text-white hover:bg-secondary/90 !rounded-button">Create account</button>
+</form>
+<div class="mt-6">
+<div class="relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-gray-300"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-2 bg-[#f5f6f8] text-gray-500">Or continue with</span>
+</div>
+</div>
+<div class="mt-6">
+<button class="w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 !rounded-button">
+<i class="ri-google-fill text-xl mr-2"></i>
+Google
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>
+</html>
+
+

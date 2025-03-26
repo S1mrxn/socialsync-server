@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Search</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#ba2c94',
+secondary: '#0a1123'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.search-suggestions {
+display: none;
+position: absolute;
+width: 100%;
+background: white;
+border: 1px solid #e5e7eb;
+border-top: none;
+border-radius: 0 0 8px 8px;
+z-index: 50;
+}
+.search-input:focus + .search-suggestions {
+display: block;
+}
+</style>
+</head>
+<body class="bg-[#0a1123] min-h-screen pb-20">
+<nav class="bg-[#0a1123] border-b border-gray-700 fixed w-full z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center">
+<span class="text-2xl font-['Pacifico'] text-[#8fd1bf]">SocialSync</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="w-10 h-10 flex items-center justify-center text-[#8fd1bf] hover:bg-gray-800 rounded-full">
+<i class="ri-notification-3-line ri-xl"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-[#8fd1bf] hover:bg-gray-800 rounded-full">
+<i class="ri-settings-3-line ri-xl"></i>
+</button>
+<div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+<img src="https://public.readdy.ai/ai/img_res/c53ce7b2935a962d946604ceeae7ce73.jpg" class="rounded-full" alt="Profile">
+</div>
+</div>
+</div>
+</div>
+</nav>
+<div class="pt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="py-8 sticky top-16 bg-[#0a1123] z-40">
+<div class="relative w-3/5 mx-auto">
+<div class="relative">
+<input type="text" class="search-input w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Search people, posts, or hashtags...">
+<div class="absolute left-4 top-1/2 transform -translate-y-1/2">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+<div class="absolute right-4 top-1/2 transform -translate-y-1/2 flex space-x-2">
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600">
+<i class="ri-mic-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600">
+<i class="ri-close-line"></i>
+</button>
+</div>
+</div>
+<div class="search-suggestions">
+<div class="py-2">
+<div class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center">
+<i class="ri-history-line mr-2 text-gray-400"></i>
+<span>digital marketing trends</span>
+</div>
+<div class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center">
+<i class="ri-history-line mr-2 text-gray-400"></i>
+<span>social media strategy</span>
+</div>
+<div class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center">
+<i class="ri-search-line mr-2 text-gray-400"></i>
+<span>content creation tips</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-8">
+<h2 class="text-lg font-semibold mb-4 text-[#8fd1bf]">Trending Topics</h2>
+<div class="flex space-x-4 overflow-x-auto pb-4">
+<a href="#" class="flex-shrink-0 bg-white rounded-full px-4 py-2 border border-gray-200 hover:border-[#ba2c94]">
+<span class="text-[#ba2c94]">#DigitalMarketing</span>
+<span class="text-gray-500 text-sm ml-2">234K posts</span>
+</a>
+<a href="#" class="flex-shrink-0 bg-white rounded-full px-4 py-2 border border-gray-200 hover:border-[#ba2c94]">
+<span class="text-[#ba2c94]">#SocialMediaTips</span>
+<span class="text-gray-500 text-sm ml-2">156K posts</span>
+</a>
+<a href="#" class="flex-shrink-0 bg-white rounded-full px-4 py-2 border border-gray-200 hover:border-[#ba2c94]">
+<span class="text-[#ba2c94]">#ContentCreation</span>
+<span class="text-gray-500 text-sm ml-2">98K posts</span>
+</a>
+<a href="#" class="flex-shrink-0 bg-white rounded-full px-4 py-2 border border-gray-200 hover:border-[#ba2c94]">
+<span class="text-[#ba2c94]">#MarketingStrategy</span>
+<span class="text-gray-500 text-sm ml-2">76K posts</span>
+</a>
+</div>
+</div>
+<div class="flex-1 max-w-3xl mx-auto">
+<div class="bg-white rounded-lg p-4 shadow-sm mb-4">
+<div class="flex justify-between items-center mb-4">
+<div class="flex space-x-2">
+<button class="px-4 py-2 text-sm font-medium text-white bg-[#ba2c94] rounded-full hover:bg-[#a02582]">
+Latest
+</button>
+</div>
+</div>
+<div class="space-y-4">
+<div class="border-b border-gray-200 pb-4">
+<div class="flex items-start space-x-4">
+<img src="https://public.readdy.ai/ai/img_res/0a91f3ed5d2eb13a5260f1bd20504601.jpg" class="w-12 h-12 rounded-full" alt="Profile">
+<div class="flex-1 max-w-3xl">
+<div class="flex items-center mb-1">
+<h3 class="font-semibold mr-2">Sarah Anderson</h3>
+<i class="ri-verified-badge-fill text-primary"></i>
+<span class="text-gray-500 text-sm ml-2">@sarahanderson</span>
+</div>
+<p class="text-gray-900 mb-2">Just published a comprehensive guide on digital marketing trends for 2025! Check out the latest insights on AI-driven marketing, voice search optimization, and more. #DigitalMarketing #MarketingTrends</p>
+<div class="flex items-center space-x-4 text-sm text-white">
+<button class="flex items-center space-x-1 hover:text-primary">
+<i class="ri-heart-line"></i>
+<span>2.4K</span>
+</button>
+<button class="flex items-center space-x-1 hover:text-primary">
+<i class="ri-chat-1-line"></i>
+<span>342</span>
+</button>
+<button class="flex items-center space-x-1 hover:text-primary">
+<i class="ri-share-line"></i>
+<span>156</span>
+</button>
+<span>2 hours ago</span>
+</div>
+</div>
+</div>
+</div>
+<div class="border-b border-gray-200 pb-4">
+<div class="flex items-start space-x-4">
+<img src="https://public.readdy.ai/ai/img_res/6fcc3b3a02d3012c1bba3f45ca7600ba.jpg" class="w-12 h-12 rounded-full" alt="Profile">
+<div class="flex-1 max-w-3xl">
+<div class="flex items-center mb-1">
+<h3 class="font-semibold mr-2">Michael Chen</h3>
+<span class="text-white text-sm">@michaelchen</span>
+</div>
+<p class="text-gray-900 mb-2">Excited to share my latest video on content creation strategies! Learn how to create engaging content that resonates with your audience. #ContentCreation #SocialMedia</p>
+<div class="rounded-lg overflow-hidden mb-2">
+<img src="https://public.readdy.ai/ai/img_res/4674fa995ca57a9928f291df8c828a56.jpg" class="w-full" alt="Content Creation">
+</div>
+<div class="flex items-center space-x-4 text-sm text-white">
+<button class="flex items-center space-x-1 hover:text-primary">
+<i class="ri-heart-line"></i>
+<span>1.8K</span>
+</button>
+<button class="flex items-center space-x-1 hover:text-primary">
+<i class="ri-chat-1-line"></i>
+<span>245</span>
+</button>
+<button class="flex items-center space-x-1 hover:text-primary">
+<i class="ri-share-line"></i>
+<span>89</span>
+</button>
+<span>4 hours ago</span>
+</div>
+</div>
+</div>
+</div>
+<div class="border-b border-gray-200 pb-4">
+<div class="flex items-start space-x-4">
+<img src="https://public.readdy.ai/ai/img_res/fd0a2773feea310edeff7ccaf165c11f.jpg" class="w-12 h-12 rounded-full" alt="Profile">
+<div class="flex-1 max-w-3xl">
+<div class="flex items-center mb-1">
+<h3 class="font-semibold mr-2">Emma Thompson</h3>
+<i class="ri-verified-badge-fill text-primary"></i>
+<span class="text-gray-500 text-sm ml-2">@emmathompson</span>
+</div>
+<p class="text-gray-900 mb-2">Here's your daily social media tip: Focus on creating value-driven content that solves your audience's problems. Build trust first, sell later. #SocialMediaTips #Marketing</p>
+<div class="flex items-center space-x-4 text-sm text-white">
+<button class="flex items-center space-x-1 hover:text-primary">
+<i class="ri-heart-line"></i>
+<span>3.2K</span>
+</button>
+<button class="flex items-center space-x-1 hover:text-primary">
+<i class="ri-chat-1-line"></i>
+<span>567</span>
+</button>
+<button class="flex items-center space-x-1 hover:text-primary">
+<i class="ri-share-line"></i>
+<span>234</span>
+</button>
+<span>6 hours ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed bottom-0 left-0 right-0 bg-[#0a1123] border-t border-gray-700 z-50">
+<div class="max-w-7xl mx-auto px-4">
+<div class="flex justify-around py-3">
+<a href="user-feed.html" class="w-16 h-16 flex flex-col items-center justify-center text-[#8fd1bf]">
+<i class="ri-home-5-line ri-xl mb-1"></i>
+<span class="text-xs">Home</span>
+</a>
+<a href="search.html" class="w-16 h-16 flex flex-col items-center justify-center text-[#ba2c94]">
+<i class="ri-search-line ri-xl mb-1"></i>
+<span class="text-xs">Search</span>
+</a>
+<a href="post.html" class="w-16 h-16 flex flex-col items-center justify-center text-[#8fd1bf]">
+<i class="ri-add-circle-line ri-xl mb-1"></i>
+<span class="text-xs">Post</span>
+</a>
+<a href="user-profile.html" class="w-16 h-16 flex flex-col items-center justify-center text-[#8fd1bf]">
+<i class="ri-user-line ri-xl mb-1"></i>
+<span class="text-xs">Profile</span>
+</a>
+</div>
+</div>
+</div>
+<script>
+document.querySelectorAll('.form-checkbox, .form-radio').forEach(input => {
+input.addEventListener('change', () => {
+console.log('Filter changed:', input.checked);
+});
+});
+document.querySelectorAll('[class*="ri-heart"]').forEach(button => {
+button.addEventListener('click', (e) => {
+const icon = e.currentTarget.querySelector('i');
+const count = e.currentTarget.querySelector('span');
+if (icon.classList.contains('ri-heart-line')) {
+icon.classList.replace('ri-heart-line', 'ri-heart-fill');
+icon.style.color = '#EF4444';
+count.textContent = (parseInt(count.textContent) + 1) + 'K';
+} else {
+icon.classList.replace('ri-heart-fill', 'ri-heart-line');
+icon.style.color = '';
+count.textContent = (parseInt(count.textContent) - 1) + 'K';
+}
+});
+});
+const searchInput = document.querySelector('.search-input');
+const clearButton = searchInput.parentElement.querySelector('.ri-close-line').parentElement;
+searchInput.addEventListener('input', () => {
+clearButton.style.display = searchInput.value ? 'flex' : 'none';
+});
+clearButton.addEventListener('click', () => {
+searchInput.value = '';
+clearButton.style.display = 'none';
+});
+clearButton.style.display = 'none';
+</script>
+</body>
+</html>

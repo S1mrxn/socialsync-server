@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Post - SocialSync</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#0a1123',
+secondary: '#8fd1bf',
+button: '#ba2c94'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.image-preview img {
+max-height: 300px;
+object-fit: cover;
+}
+</style>
+</head>
+<body class="bg-primary min-h-screen relative overflow-x-hidden">
+<div class="fixed inset-0 overflow-hidden">
+<div class="absolute -left-16 top-1/4 w-32 h-32 rounded-full bg-secondary/5"></div>
+<div class="absolute -right-8 top-1/3 w-24 h-24 rounded-full bg-secondary/5"></div>
+<div class="absolute left-8 top-2/3 w-16 h-16 rounded-full bg-secondary/5"></div>
+<div class="absolute -right-16 top-3/4 w-40 h-40 rounded-full bg-secondary/5"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(138,255,241,0.02)_0%,rgba(10,17,35,0)_100%)]"></div>
+</div>
+<nav class="fixed top-0 left-0 right-0 bg-primary border-b border-secondary/20 z-50">
+<div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<a href="#" onclick="window.location.href='user-feed.html';" class="text-2xl font-['Pacifico'] text-secondary">SocialSync</a>
+</div>
+<div class="flex items-center gap-6">
+<a href="user-feed.html" id="discardBtn" class="text-secondary hover:text-secondary/80">Cancel</a>
+<button id="publishBtn" class="px-6 py-2 bg-button text-white font-medium !rounded-button hover:bg-button/90">Share Post</button>
+</div>
+</div>
+</nav>
+<main class="max-w-2xl mx-auto pt-24 pb-24 px-4">
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="p-4">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-full bg-cover" style="background-image: url('https://public.readdy.ai/ai/img_res/6aafcc72a992dcf0f53ea72ead38585e.jpg')"></div>
+<div>
+<h3 class="font-semibold text-secondary">Emily Parker</h3>
+<div class="relative">
+  <button id="privacyButton" class="text-sm text-gray-600 flex items-center gap-1 cursor-pointer">
+    <span id="selectedPrivacy">Public</span>
+    <i class="ri-arrow-down-s-line"></i>
+  </button>
+  <div id="privacyDropdown" class="hidden absolute top-full left-0 mt-1 w-32 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-10">
+    <div class="px-3 py-2 hover:bg-gray-50 cursor-pointer flex items-center gap-2" onclick="selectPrivacy('Public')">
+      <i class="ri-global-line"></i>
+      <span>Public</span>
+    </div>
+    <div class="px-3 py-2 hover:bg-gray-50 cursor-pointer flex items-center gap-2" onclick="selectPrivacy('Private')">
+      <i class="ri-lock-line"></i>
+      <span>Private</span>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<textarea id="postContent" class="w-full min-h-[120px] resize-none text-gray-800 placeholder-gray-400 focus:outline-none border border-gray-200 rounded-lg p-3 bg-transparent" placeholder="What do you want to say?"></textarea>
+<div id="imagePreview" class="image-preview hidden mb-4 rounded-lg overflow-hidden">
+<div class="relative">
+<img src="" alt="Preview" class="w-full">
+<button class="absolute top-2 right-2 w-8 h-8 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70" onclick="removeImage()">
+<i class="ri-close-line"></i>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-4 border-t border-gray-100 pt-4">
+<div class="relative">
+<input type="file" id="imageInput" class="hidden" accept="image/*" onchange="handleImageUpload(event)">
+<button onclick="document.getElementById('imageInput').click()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100">
+<i class="ri-image-line text-xl text-button"></i>
+</button>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100">
+<i class="ri-emotion-line text-xl text-button"></i>
+</button>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-0 left-0 right-0 bg-primary border-t border-secondary/20">
+<div class="max-w-2xl mx-auto px-4 py-2 flex items-center justify-between">
+<a href="user-feed.html" class="flex flex-col items-center gap-1 p-2 text-secondary">
+<i class="ri-home-5-line text-2xl"></i>
+<span class="text-xs">Home</span>
+</a>
+<a href="search.html" class="flex flex-col items-center gap-1 p-2 text-secondary">
+<i class="ri-search-line text-2xl"></i>
+<span class="text-xs">Search</span>
+</a>
+<button class="flex flex-col items-center gap-1 p-2 text-button">
+<i class="ri-add-line text-2xl"></i>
+<span class="text-xs">Post</span>
+</button>
+<a href="user-profile.html" class="flex flex-col items-center gap-1 p-2 text-secondary">
+<i class="ri-user-line text-2xl"></i>
+<span class="text-xs">Profile</span>
+</a>
+</div>
+</div>
+<div id="publishingModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+<div class="bg-white rounded-lg p-6 w-80">
+<div class="flex flex-col items-center">
+<div class="w-16 h-16 flex items-center justify-center mb-4">
+<i class="ri-loader-4-line text-4xl text-button animate-spin"></i>
+</div>
+<p class="text-lg font-medium mb-2">Publishing your post...</p>
+<p class="text-sm text-gray-500">Please wait a moment</p>
+</div>
+</div>
+</div>
+<script>
+let selectedImage = null;
+function handleImageUpload(event) {
+const file = event.target.files[0];
+if (file) {
+const reader = new FileReader();
+reader.onload = function(e) {
+selectedImage = e.target.result;
+document.getElementById('imagePreview').classList.remove('hidden');
+document.getElementById('imagePreview').querySelector('img').src = selectedImage;
+};
+reader.readAsDataURL(file);
+}
+}
+function removeImage() {
+selectedImage = null;
+document.getElementById('imagePreview').classList.add('hidden');
+document.getElementById('imageInput').value = '';
+}
+document.getElementById('publishBtn').addEventListener('click', function() {
+const content = document.getElementById('postContent').value;
+const privacy = document.getElementById('privacySelect').value;
+if (!content.trim() && !selectedImage) {
+const notification = document.createElement('div');
+notification.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm';
+notification.textContent = 'Please add some content to your post';
+document.body.appendChild(notification);
+setTimeout(() => notification.remove(), 2000);
+return;
+}
+document.getElementById('publishingModal').classList.remove('hidden');
+setTimeout(() => {
+document.getElementById('publishingModal').classList.add('hidden');
+window.location.href = 'user-feed.html';
+}, 2000);
+});
+const privacyButton = document.getElementById('privacyButton');
+const privacyDropdown = document.getElementById('privacyDropdown');
+privacyButton.addEventListener('click', () => {
+  privacyDropdown.classList.toggle('hidden');
+});
+document.addEventListener('click', (e) => {
+  if (!privacyButton.contains(e.target) && !privacyDropdown.contains(e.target)) {
+    privacyDropdown.classList.add('hidden');
+  }
+});
+function selectPrivacy(privacy) {
+  document.getElementById('selectedPrivacy').textContent = privacy;
+  privacyDropdown.classList.add('hidden');
+}
+document.getElementById('discardBtn').addEventListener('click', function() {
+  if (document.getElementById('postContent').value.trim() || selectedImage) {
+    const notification = document.createElement('div');
+    notification.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm';
+    notification.textContent = 'Post discarded';
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 2000);
+  }
+  window.location.href = 'user-feed.html';
+});
+</script>
+</body>
+</html>

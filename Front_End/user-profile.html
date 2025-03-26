@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+background-color: #0a1123;
+color: #8fd1bf;
+width: 100%;
+max-width: 768px;
+margin: 0 auto;
+min-height: 100vh;
+}
+@media (max-width: 768px) {
+body {
+width: 100%;
+}
+}
+.stats-number { color: #ffffff; }
+.action-btn { background-color: #ba2c94; }
+.post-overlay { background: rgba(10, 17, 35, 0.5); }
+input[type="checkbox"] { display: none; }
+.custom-checkbox { background-color: #ba2c94; }
+</style>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#0a1123',
+secondary: '#ba2c94'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+</head>
+<body>
+<div class="fixed top-0 w-full max-w-[768px] mx-auto bg-primary z-50 px-4 py-3 flex items-center justify-between">
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center cursor-pointer" onclick="window.location.href='user-feed.html'">
+<i class="ri-arrow-left-line text-xl"></i>
+</div>
+<h1 class="text-lg ml-2">olivia_wilson</h1>
+</div>
+<div class="flex items-center">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-notification-3-line text-xl"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center ml-2 cursor-pointer" onclick="window.location.href='settings.html'">
+<i class="ri-more-line text-xl"></i>
+</div>
+</div>
+</div>
+<div class="mt-14 px-4 max-w-[768px] mx-auto">
+<div class="flex items-center justify-between mb-6">
+<div class="w-20 h-20 rounded-full overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/86c0b753483d8d8d44edd78bf81d0033.jpg" class="w-full h-full object-cover" alt="Profile Picture">
+</div>
+<div class="flex-1 ml-4">
+<div class="flex justify-around text-center">
+<div>
+<div class="stats-number font-semibold">248</div>
+<div class="text-xs mt-1">Posts</div>
+</div>
+<div>
+<div class="stats-number font-semibold">12.4K</div>
+<div class="text-xs mt-1">Followers</div>
+</div>
+<div>
+<div class="stats-number font-semibold">891</div>
+<div class="text-xs mt-1">Following</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-4">
+<h2 class="font-semibold mb-1">Olivia Wilson</h2>
+<p class="text-sm mb-2">📸 Travel & Lifestyle Creator</p>
+<p class="text-sm mb-2">🌍 Exploring the world one photo at a time</p>
+<p class="text-sm">✨ New video every Tuesday</p>
+</div>
+<div class="flex gap-2 mb-6">
+<button class="flex-1 action-btn text-white py-2 !rounded-button">Follow</button>
+<button class="w-10 h-10 bg-opacity-10 bg-white border border-gray-600 !rounded-button flex items-center justify-center">
+<i class="ri-share-line"></i>
+</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-1 mb-16">
+<div class="aspect-square cursor-pointer" onclick="window.location.href='post-details.html'">
+<img src="https://public.readdy.ai/ai/img_res/03cc8845b185362dac62d5a53058e446.jpg" class="w-full h-full object-cover" alt="Post 1">
+</div>
+<div class="aspect-square cursor-pointer" onclick="window.location.href='post-details.html'">
+<img src="https://public.readdy.ai/ai/img_res/0c562e633647ba217e2f8a84a049b421.jpg" class="w-full h-full object-cover" alt="Post 2">
+</div>
+<div class="aspect-square cursor-pointer" onclick="window.location.href='post-details.html'">
+<img src="https://public.readdy.ai/ai/img_res/b75ef10ec8f845e85560c47d1731e335.jpg" class="w-full h-full object-cover" alt="Post 3">
+</div>
+<div class="aspect-square cursor-pointer" onclick="window.location.href='post-details.html'">
+<img src="https://public.readdy.ai/ai/img_res/d9c9e16d746ce8bbd3d240e992ea9422.jpg" class="w-full h-full object-cover" alt="Post 4">
+</div>
+<div class="aspect-square cursor-pointer" onclick="window.location.href='post-details.html'">
+<img src="https://public.readdy.ai/ai/img_res/1cc51618dbe62a88b22345511c7a7059.jpg" class="w-full h-full object-cover" alt="Post 5">
+</div>
+<div class="aspect-square cursor-pointer" onclick="window.location.href='post-details.html'">
+<img src="https://public.readdy.ai/ai/img_res/6760c47bedb909ae1cb7fb3043a403c0.jpg" class="w-full h-full object-cover" alt="Post 6">
+</div>
+</div>
+</div>
+<div class="fixed bottom-0 w-full max-w-[768px] mx-auto bg-primary border-t border-gray-800 px-6 py-2 flex justify-between items-center">
+<div class="flex flex-col items-center cursor-pointer" onclick="window.location.href='user-feed.html'">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-home-line text-xl"></i>
+</div>
+<span class="text-xs mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center cursor-pointer" onclick="window.location.href='search.html'">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-search-line text-xl"></i>
+</div>
+<span class="text-xs mt-1">Search</span>
+</div>
+<div class="flex flex-col items-center cursor-pointer" onclick="window.location.href='post.html'">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-add-box-line text-xl"></i>
+</div>
+<span class="text-xs mt-1">Post</span>
+</div>
+<div class="flex flex-col items-center cursor-pointer" onclick="window.location.href='user-profile.html'">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-user-fill text-xl text-secondary"></i>
+</div>
+<span class="text-xs mt-1 text-secondary">Profile</span>
+</div>
+</div>
+<script>
+document.querySelectorAll('button').forEach(button => {
+button.addEventListener('click', function() {
+if(this.textContent.trim() === 'Follow') {
+this.textContent = 'Following';
+this.classList.add('bg-opacity-10', 'bg-white', 'border', 'border-gray-600');
+this.classList.remove('action-btn');
+} else if(this.textContent.trim() === 'Following') {
+this.textContent = 'Follow';
+this.classList.remove('bg-opacity-10', 'bg-white', 'border', 'border-gray-600');
+this.classList.add('action-btn');
+}
+});
+});
+</script>
+</body>
+</html>
