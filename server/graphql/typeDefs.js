@@ -40,10 +40,11 @@ const typeDefs = gql`
     getPost(id: ID!): Post
   }
 
+    scalar Upload
   type Mutation {
     register(username: String!, email: String!, password: String!): AuthPayload
     login(email: String!, password: String!): AuthPayload
-    createPost(imageUrl: String!, caption: String): Post
+    createPost(file: Upload!, caption: String): Post
     likePost(postId: ID!): Post
     commentOnPost(postId: ID!, text: String!): Post
   }
