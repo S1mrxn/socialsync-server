@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/navbar';
-import Landing from './pages/landing';
+import Landing from './pages/Landing';
 import Feed from './pages/Feed';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
@@ -10,7 +10,7 @@ import './main.css';
 
 function AppContent() {
   const location = useLocation();
-  const noNavbarPaths = ['/', '/login', '/signup'];
+  const noNavbarPaths = ['/', '/login', '/signup', '/feed'];
   const showNavbar = !noNavbarPaths.includes(location.pathname);
 
   return (
