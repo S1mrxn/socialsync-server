@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GLOBAL STYLES */
+body, html, #root {
+  @apply m-0 p-0 font-sans bg-primary text-secondary;
+}
+
+/* Optional: Global styling for Remixicon icons */
+:where([class^="ri-"])::before {
+  content: "\f3c2";
+}
