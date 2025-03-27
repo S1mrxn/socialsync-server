@@ -6,6 +6,7 @@ import Feed from './pages/Feed';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import './main.css';
 
 function AppContent() {
   const location = useLocation();

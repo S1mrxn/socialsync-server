@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './app.jsx';
-import './style/main.css';
+import App from './App';
+import './main.css';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error("Couldn't find root element");
-}
-const root = ReactDOM.createRoot(rootElement);
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4000/graphql',
+});
 
+const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+});
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <ApolloProvider client={client}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </ApolloProvider>
 );
