@@ -101,27 +101,32 @@ export default function Feed() {
         </div>
       </main>
 
-      {/* Footer Menu */}
+     {/* Footer Menu */}
       <footer className="fixed bottom-0 left-0 right-0 bg-primary border-t border-accent/20">
         <div className="max-w-2xl mx-auto px-4 py-2 flex justify-between text-white">
-          <button className="flex flex-col items-center gap-1 p-2">
+          {/* Home Button */}
+          <a href="https://socialsynctest.netlify.app/" className="flex flex-col items-center gap-1 p-2">
             <i className="ri-home-5-line text-2xl"></i>
             <span className="text-xs">Home</span>
-          </button>
-          <button className="flex flex-col items-center gap-1 p-2">
+          </a>
+          {/* Search Button */}
+          <a href="https://socialsynctest.netlify.app/search" className="flex flex-col items-center gap-1 p-2">
             <i className="ri-search-line text-2xl"></i>
             <span className="text-xs">Search</span>
-          </button>
-          <button className="flex flex-col items-center gap-1 p-2">
+          </a>
+          {/* Post Button */}
+          <a href="https://socialsynctest.netlify.app/feed" className="flex flex-col items-center gap-1 p-2">
             <i className="ri-add-line text-2xl"></i>
             <span className="text-xs">Post</span>
-          </button>
-          <button className="flex flex-col items-center gap-1 p-2">
+          </a>
+          {/* Profile Button */}
+          <a href="https://socialsynctest.netlify.app/profile" className="flex flex-col items-center gap-1 p-2">
             <i className="ri-user-line text-2xl"></i>
             <span className="text-xs">Profile</span>
-          </button>
+          </a>
         </div>
       </footer>
+        
 
       {/* Notifications */}
       {showNotifications && (
